@@ -3,9 +3,6 @@ using System.Collections;
 
 public class Ship : MonoBehaviour 
 {
-	public float WorldWidth = 10.0f;
-	public float WorldHeight = 10.0f;
-	
 	public float Speed = 5.0f;
 	
 	// Use this for initialization
@@ -20,35 +17,20 @@ public class Ship : MonoBehaviour
 		transform.Translate(new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f) * Speed * Time.deltaTime);
 		
 		Vector3 p = transform.position;
+
+		float w = World.Width;
+		float h = World.Height;
 		
-		float halfWidth = WorldWidth * 0.5f;
-		float halfHeight = WorldHeight * 0.5f;
+		if (p.x > World.Right)
+			p.x -= w;
+		else if (p.x < World.Left)
+			p.x += w;
 		
-		if (p.x > halfWidth)
-			p.x -= WorldWidth;
-		else if (p.x < -halfWidth)
-			p.x += WorldWidth;
-		
-		if (p.y > halfHeight)
-			p.y -= WorldHeight;
-		else if (p.y < -halfHeight)
-			p.y += WorldHeight;
+		if (p.y > World.Top)
+			p.y -= h;
+		else if (p.y < World.Bottom)
+			p.y += h;
 		
 		transform.position = p;
-	}
-	
-	void OnDrawGizmos()
-	{
-		Gizmos.color = Color.yellow;
-		
-		float l = WorldWidth * -0.5f;
-		float r = -l;
-		float t = WorldHeight * 0.5f;
-		float b = -t;
-		
-		Gizmos.DrawLine(new Vector3(l, t, 0.0f), new Vector3(r, t, 0.0f));
-		Gizmos.DrawLine(new Vector3(r, t, 0.0f), new Vector3(r, b, 0.0f));
-		Gizmos.DrawLine(new Vector3(r, b, 0.0f), new Vector3(l, b, 0.0f));
-		Gizmos.DrawLine(new Vector3(l, b, 0.0f), new Vector3(l, t, 0.0f));
 	}
 }
