@@ -1,1 +1,10 @@
 .dwlt
+*.dwlt
+
+*.sln
+
+*.sln
+
+*.csproj
+
+*.pidb
