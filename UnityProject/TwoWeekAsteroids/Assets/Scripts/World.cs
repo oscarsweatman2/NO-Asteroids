@@ -21,11 +21,13 @@ public class World : MonoBehaviour
 	{
 		Inst = this;
 	}
-	
+
 	// Update is called once per frame
 	void Update () 
 	{
-	
+		float ortho = Camera.main.orthographicSize;
+		m_height = ortho * 2.0f;
+		m_width = m_height * Camera.main.aspect;
 	}
 	
 	void OnDrawGizmos()
