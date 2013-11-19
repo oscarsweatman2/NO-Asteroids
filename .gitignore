@@ -20,3 +20,5 @@ Library/
 Library/*
 Temp
 UnityProject/TwoWeekAsteroids/Library/guidmapper
+
+*.userprefs
