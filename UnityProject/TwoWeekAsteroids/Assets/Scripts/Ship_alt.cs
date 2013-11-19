@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Ship : MonoBehaviour 
+public class Ship_alt : MonoBehaviour 
 {
 	public GameObject BulletType = null;
 	public Cursor Cursor = null;
 
 	public float Speed = 5.0f;
 	public float FireTime = 0.5f;
-
-	public bool alternateControl = false;
 
 	float m_fireTimer = 0.0f;
 	
@@ -22,15 +20,8 @@ public class Ship : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (alternateControl)
-		{
-			transform.Translate(transform.right * Input.GetAxis("Horizontal") * Speed * Time.deltaTime, Space.World);
-			transform.Translate(transform.up * Input.GetAxis("Vertical") * Speed * Time.deltaTime, Space.World);
-		}
-		else
-		{
-			transform.Translate(new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f) * Speed * Time.deltaTime, Space.World);
-		}
+		transform.Translate(transform.right * Input.GetAxis("Horizontal") * Speed * Time.deltaTime, Space.World);
+		transform.Translate(transform.up * Input.GetAxis("Vertical") * Speed * Time.deltaTime, Space.World);
 		
 		Vector3 p = transform.position;
 

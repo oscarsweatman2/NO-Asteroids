@@ -501,13 +501,25 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Cursor
+      value: 
+      objectReference: {fileID: 252507296}
+    - target: {fileID: 0}
+      propertyPath: FireTime
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Cursor
+      value: 
+      objectReference: {fileID: 252507296}
     - target: {fileID: 11400000, guid: b221bf6bbd25449e2a8cbdc7244a2deb, type: 2}
       propertyPath: Cursor
       value: 
       objectReference: {fileID: 252507296}
     - target: {fileID: 11400000, guid: b221bf6bbd25449e2a8cbdc7244a2deb, type: 2}
-      propertyPath: FireTime
-      value: .100000001
+      propertyPath: alternateControl
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b221bf6bbd25449e2a8cbdc7244a2deb, type: 2}
@@ -602,7 +614,8 @@ MonoBehaviour:
   BulletType: {fileID: 100000, guid: f0a8604879ee040edb3cb11d01f4f403, type: 2}
   Cursor: {fileID: 252507296}
   Speed: 5
-  FireTime: .100000001
+  FireTime: .5
+  alternateControl: 0
 --- !u!1 &931480821
 GameObject:
   m_ObjectHideFlags: 0
