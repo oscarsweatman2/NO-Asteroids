@@ -9,6 +9,8 @@ public class Ship : MonoBehaviour
 	public float Speed = 5.0f;
 	public float FireTime = 0.5f;
 
+	public float BulletSpeed = 10.0f;
+
 	public bool alternateControl = false;
 
 	float m_fireTimer = 0.0f;
@@ -54,12 +56,7 @@ public class Ship : MonoBehaviour
 		Vector3 fwd = target - pos;
 		fwd.z = 0.0f;
 		fwd.Normalize();
-		Vector3 rht = new Vector3(fwd.y, -fwd.x, 0.0f);
 		transform.up = fwd;
-		//transform.right = rht;
-		//transform.forward = new Vector3(0.0f, 0.0f, 1.0f);
-
-		//transform.LookAt(Cursor.transform.position);
 
 		m_fireTimer -= Time.deltaTime;
 		if (m_fireTimer <= 0.0f)
@@ -71,9 +68,15 @@ public class Ship : MonoBehaviour
 					m_fireTimer = FireTime;
 					Bullet bullet = (Instantiate(BulletType) as GameObject).GetComponent<Bullet>();
 					bullet.transform.position = transform.position;
-					bullet.Velocity = transform.up * 10.0f;
+					bullet.Velocity = transform.up * BulletSpeed;
 				}
 			}
 		}
+	}
+	
+	void OnDrawGizmos()
+	{
+		Gizmos.color = new Color(0.0f, 1.0f, 0.0f, 0.1f);
+		Gizmos.DrawCube(this.collider.transform.position, (this.collider as BoxCollider).size);
 	}
 }

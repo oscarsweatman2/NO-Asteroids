@@ -85,6 +85,7 @@ MonoBehaviour:
   Cursor: {fileID: 0}
   Speed: 5
   FireTime: .5
+  BulletSpeed: 12
   alternateControl: 0
 --- !u!1001 &100100000
 Prefab:

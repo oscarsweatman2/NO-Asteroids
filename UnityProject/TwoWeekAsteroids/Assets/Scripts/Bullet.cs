@@ -10,6 +10,16 @@ public class Bullet : MonoBehaviour
 	{
 	
 	}
+
+	void OnCollisionEnter(Collision c)
+	{
+		Asteroid a = c.gameObject.GetComponent<Asteroid>();
+		if (a != null)
+		{
+			// We hit an asteroid
+			Destroy (this.gameObject);
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () 
@@ -21,5 +31,11 @@ public class Bullet : MonoBehaviour
 		    transform.position.y < World.Bottom ||
 		    transform.position.y > World.Top)
 			Destroy(this.gameObject);
+	}
+	
+	void OnDrawGizmos()
+	{
+		Gizmos.color = new Color(0.0f, 1.0f, 0.0f, 0.1f);
+		Gizmos.DrawCube(this.collider.transform.position, (this.collider as BoxCollider).size);
 	}
 }

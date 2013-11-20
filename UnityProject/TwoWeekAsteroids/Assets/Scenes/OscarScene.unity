@@ -109,6 +109,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: dd8b8ccd749e5483cb9b717e381a1e4f, type: 2}
+      propertyPath: m_Asteroid
+      value: 
+      objectReference: {fileID: 100000, guid: 094e5ef9520e340e0af0111a642dc060, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd8b8ccd749e5483cb9b717e381a1e4f, type: 2}
   m_RootGameObject: {fileID: 931480821}
@@ -286,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed845d49ed2ce41d9a846186a711c8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Depth: 0
+  Depth: -1
 --- !u!1 &365953038
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,6 +607,8 @@ MonoBehaviour:
   Cursor: {fileID: 252507296}
   Speed: 5
   FireTime: .100000001
+  BulletSpeed: 12
+  alternateControl: 0
 --- !u!1 &931480821
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,6 +650,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_width: 12
   m_height: 10
+  m_Asteroid: {fileID: 100000, guid: 094e5ef9520e340e0af0111a642dc060, type: 2}
+  m_asteroidRate: 1
+  m_asteroidSpeed: 2
 --- !u!1 &986695159
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,6 +719,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 094e5ef9520e340e0af0111a642dc060, type: 2}
+      propertyPath: Velocity.x
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 094e5ef9520e340e0af0111a642dc060, type: 2}
   m_RootGameObject: {fileID: 1273844204}
@@ -749,6 +762,10 @@ Prefab:
     - target: {fileID: 400000, guid: d3c6c3350188e4576bd38738c1124dd2, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: d3c6c3350188e4576bd38738c1124dd2, type: 2}
+      propertyPath: Depth
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3c6c3350188e4576bd38738c1124dd2, type: 2}
@@ -816,7 +833,7 @@ MeshFilter:
     type: 2}
   m_PrefabInternal: {fileID: 1201234354}
   m_GameObject: {fileID: 1273844204}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1273844208
 Transform:
   m_ObjectHideFlags: 0
@@ -840,6 +857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6476a2933b0f47deb7e3fdc9a3fcc6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Velocity: {x: 5, y: 0, z: 0}
 --- !u!1001 &1564380688
 Prefab:
   m_ObjectHideFlags: 0
