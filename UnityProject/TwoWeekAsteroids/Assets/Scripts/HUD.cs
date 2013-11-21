@@ -8,8 +8,12 @@ public class HUD : MonoBehaviour {
 	public float size = 3.0f;
 
 	public enum anchorCorner { TopLeft, TopRight, BottomLeft, BottomRight };
-
 	public anchorCorner anchorLocation;
+	
+	public Texture matLives0;
+	public Texture matLives1;
+	public Texture matLives2;
+	public Texture matLives3;
 
 	private Vector3 screenPoint;
 

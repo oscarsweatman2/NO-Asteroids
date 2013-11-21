@@ -86,6 +86,10 @@ MonoBehaviour:
   verticalCushion: 10
   size: 3
   anchorLocation: 0
+  matLives0: {fileID: 2800000, guid: 4a32c8ab3bc70324d83baa320df51625, type: 3}
+  matLives1: {fileID: 2800000, guid: 069c5da1d530ebb469d05e5504f5d5de, type: 3}
+  matLives2: {fileID: 2800000, guid: d935f1365dbc9094293b13d165024ee4, type: 3}
+  matLives3: {fileID: 2800000, guid: 0640d8c8111b451498d62a232ad89896, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

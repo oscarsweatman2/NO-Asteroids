@@ -14,7 +14,7 @@ public class Cursor : MonoBehaviour
 
 		transform.position = wp;
 
-		Debug.Log (wp.x + ", " + wp.y + ", " + wp.z);
-		Debug.Log (mp.x + ", " + mp.y + ", " + mp.z);
+//		Debug.Log (wp.x + ", " + wp.y + ", " + wp.z);
+//		Debug.Log (mp.x + ", " + mp.y + ", " + mp.z);
 	}
 }

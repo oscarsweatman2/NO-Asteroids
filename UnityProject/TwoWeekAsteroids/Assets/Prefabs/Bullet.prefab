@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.91961193, y: -.149723053, z: 0}
-  m_LocalScale: {x: .100000001, y: .100000001, z: .100000001}
+  m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!23 &2300000
@@ -82,6 +82,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Velocity: {x: 1, y: 0, z: 0}
+  particleTrail: {fileID: 100000, guid: c2fdfad01d8b11941b4cc5a02e415fd6, type: 2}
+  pulseRate: 2
+  pulseRange: 12.7399998
+  pulseMinSize: .75
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
