@@ -15,11 +15,12 @@ public class Bullet : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+
 		GameObject m_trail = Instantiate(particleTrail, transform.position, Quaternion.identity) as GameObject;
 		m_trail.transform.parent = transform;
 	}
 
-	void OnCollisionEnter(Collision c)
+	void OnTriggerEnter(Collider c)
 	{
 		Asteroid a = c.gameObject.GetComponent<Asteroid>();
 		if (a != null)
@@ -34,7 +35,7 @@ public class Bullet : MonoBehaviour
 	{
 
 		float sinValue = (Mathf.Sin(sinCounter / pulseRate)/pulseRange) + pulseMinSize;
-		transform.localScale = new Vector3(sinValue, sinValue, 0);
+		transform.localScale = new Vector3(sinValue, sinValue, 1);
 		sinCounter++;
 
 		transform.Translate(Velocity * Time.deltaTime);
