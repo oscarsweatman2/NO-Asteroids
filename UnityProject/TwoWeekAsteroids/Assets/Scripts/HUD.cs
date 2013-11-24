@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class HUD : MonoBehaviour {
 
@@ -9,11 +10,11 @@ public class HUD : MonoBehaviour {
 
 	public enum anchorCorner { TopLeft, TopRight, BottomLeft, BottomRight };
 	public anchorCorner anchorLocation;
-	
-	public Texture matLives0;
-	public Texture matLives1;
-	public Texture matLives2;
-	public Texture matLives3;
+
+	public List<Texture> matLives;
+	public int currentMatLives;
+
+	private Texture currentTexture;
 
 	private Vector3 screenPoint;
 
@@ -41,10 +42,17 @@ public class HUD : MonoBehaviour {
 		transform.position = new Vector3(worldPos.x, worldPos.y, -1.0f);
 		transform.localScale = new Vector3(size, size, size);
 
+		currentMatLives = 3;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+	}
+
+	void AdjustNumLives(int livesChange)
+	{
+		currentMatLives += livesChange;
+		renderer.material.SetTexture(0, matLives[currentMatLives]);
 	}
 }

@@ -14,11 +14,20 @@ public class Ship : MonoBehaviour
 	public bool alternateControl = false;
 
 	float m_fireTimer = 0.0f;
-	
+
+	// Variables regarding death and respawn
+	private Vector3 origin;
+	private float respawnCounter = 0.0f;
+	public float respawnInvincibilityTime = 5.0f;
+	public GameObject shield;
+	public GameObject explosion;
+	public GameObject lifeHUDref;
+
 	// Use this for initialization
 	void Start () 
 	{
 		m_fireTimer = FireTime;
+		origin = transform.position;
 	}
 	
 	// Update is called once per frame
@@ -72,6 +81,33 @@ public class Ship : MonoBehaviour
 				}
 			}
 		}
+
+		if (respawnCounter > 0.0f && collider.enabled == false)
+		{
+			respawnCounter -= Time.deltaTime;
+		}
+		else if (respawnCounter <= 0.0f && collider.enabled == false)
+		{
+			collider.enabled = true;
+		}
+	}
+
+	void OnTriggerEnter(Collider c)
+	{
+		DieAndRespawn();
+	}
+
+	void DieAndRespawn()
+	{
+		GameObject shipExplode = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
+		Destroy (shipExplode, 2.0f);
+		transform.position = origin;
+		respawnCounter = respawnInvincibilityTime;
+		collider.enabled = false;
+		GameObject newShield = Instantiate(shield, origin, Quaternion.identity) as GameObject;
+		newShield.transform.parent = transform;
+		Destroy (newShield, respawnInvincibilityTime);
+		lifeHUDref.SendMessage("AdjustNumLives", -1);
 	}
 	
 	void OnDrawGizmos()

@@ -76,6 +76,6 @@ public class Asteroid : MonoBehaviour
 	void OnDrawGizmos()
 	{
 		Gizmos.color = new Color(0.0f, 1.0f, 0.0f, 0.1f);
-		Gizmos.DrawCube(this.collider.transform.position, (this.collider as BoxCollider).size);
+		Gizmos.DrawCube(this.collider.transform.position, new Vector3((this.collider as SphereCollider).radius * 2, (this.collider as SphereCollider).radius * 2,(this.collider as SphereCollider).radius * 2));
 	}
 }
