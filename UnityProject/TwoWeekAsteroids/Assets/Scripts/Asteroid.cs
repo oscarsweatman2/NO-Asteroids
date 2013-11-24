@@ -7,6 +7,8 @@ public class Asteroid : MonoBehaviour
 	public int numAsteroidChunks = 4;			// Number of pieces an asteroid breaks into in a single hit
 	public int numAsteroidDivisions = 2;		// Number of times an asteroid divides before it just disappears
 
+	public GameObject asteroidExplosion;
+
 	private int numTimesSplit = 0;
 
 	// Use this for initialization
@@ -30,11 +32,13 @@ public class Asteroid : MonoBehaviour
 					a.transform.position = transform.position;
 					a.Velocity = Random.onUnitSphere;
 					a.Velocity.z = 0.0f;
-					a.Velocity = a.Velocity.normalized * (Velocity.magnitude * 0.5f);
+					a.Velocity = a.Velocity.normalized * (Velocity.magnitude * 1.5f);	// Asteroids move more quickly after dividing
 					a.transform.localScale = transform.localScale * 0.5f;
 					a.numTimesSplit = numTimesSplit + 1;
 				}
 			}
+			GameObject explosion = Instantiate(asteroidExplosion, new Vector3(transform.position.x, transform.position.y, -1.0f), Quaternion.Euler(0, 0, Random.Range(0, 360))) as GameObject;
+			explosion.transform.localScale = new Vector3(transform.localScale.x * 1.5f, transform.localScale.y * 1.5f, explosion.transform.localScale.z);
 			Destroy (this.gameObject);
 		}
 	}
@@ -44,11 +48,29 @@ public class Asteroid : MonoBehaviour
 	{
 		transform.Translate(Velocity * Time.deltaTime);
 		
-		if (transform.position.x < World.Left ||
-		    transform.position.x > World.Right ||
-		    transform.position.y < World.Bottom ||
-		    transform.position.y > World.Top)
-			Destroy(this.gameObject);
+//		if (transform.position.x < World.Left ||
+//		    transform.position.x > World.Right ||
+//		    transform.position.y < World.Bottom ||
+//		    transform.position.y > World.Top)
+//			Destroy(this.gameObject);
+
+		// Asteroids wrap around edge of screen
+		Vector3 p = transform.position;
+		
+		float w = World.Width;
+		float h = World.Height;
+		
+		if (p.x > World.Right)
+			p.x -= w;
+		else if (p.x < World.Left)
+			p.x += w;
+		
+		if (p.y > World.Top)
+			p.y -= h;
+		else if (p.y < World.Bottom)
+			p.y += h;
+		
+		transform.position = p;
 	}
 
 	void OnDrawGizmos()
