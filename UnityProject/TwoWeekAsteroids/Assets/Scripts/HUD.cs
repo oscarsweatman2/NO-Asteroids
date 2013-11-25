@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class HUD : MonoBehaviour {
 
+	public enum HUDcontent { Lives,Score };
+	public HUDcontent HUDtype;
+
 	public float horizontalCushion;
 	public float verticalCushion;
 	public float size = 3.0f;
@@ -42,7 +45,10 @@ public class HUD : MonoBehaviour {
 		transform.position = new Vector3(worldPos.x, worldPos.y, -1.0f);
 		transform.localScale = new Vector3(size, size, size);
 
+		// ----- LIVES behavior -----
 		currentMatLives = 3;
+
+		// ----- SCORE behavior -----
 	}
 	
 	// Update is called once per frame
@@ -50,9 +56,24 @@ public class HUD : MonoBehaviour {
 
 	}
 
-	void AdjustNumLives(int livesChange)
+	public void AdjustNumLives(int livesChange)
 	{
-		currentMatLives += livesChange;
-		renderer.material.SetTexture(0, matLives[currentMatLives]);
+		if (currentMatLives >= 0)
+		{
+			currentMatLives += livesChange;
+			renderer.material.SetTexture(0, matLives[currentMatLives]);
+		}
+		else
+		{
+
+		}
+	}
+
+	void OnGUI()
+	{
+		if (HUDtype == HUDcontent.Score)
+		{
+			GUI.Label (new Rect(screenPoint.x - 20, Camera.main.pixelHeight - screenPoint.y, 200, 20), "score");
+		}
 	}
 }

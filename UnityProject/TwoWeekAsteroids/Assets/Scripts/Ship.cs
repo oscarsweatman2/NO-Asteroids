@@ -101,13 +101,23 @@ public class Ship : MonoBehaviour
 	{
 		GameObject shipExplode = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
 		Destroy (shipExplode, 2.0f);
-		transform.position = origin;
-		respawnCounter = respawnInvincibilityTime;
-		collider.enabled = false;
-		GameObject newShield = Instantiate(shield, origin, Quaternion.identity) as GameObject;
-		newShield.transform.parent = transform;
-		Destroy (newShield, respawnInvincibilityTime);
-		lifeHUDref.SendMessage("AdjustNumLives", -1);
+
+		HUD lifeHUD = lifeHUDref.GetComponent<HUD>();
+		if (lifeHUD.currentMatLives > 0)
+		{
+			lifeHUD.AdjustNumLives(-1);
+			transform.position = origin;
+			respawnCounter = respawnInvincibilityTime;
+			collider.enabled = false;
+			GameObject newShield = Instantiate(shield, origin, Quaternion.identity) as GameObject;
+			newShield.transform.parent = transform;
+			Destroy (newShield, respawnInvincibilityTime);
+		}
+		else
+		{
+			Destroy (gameObject);
+		}
+
 	}
 	
 	void OnDrawGizmos()

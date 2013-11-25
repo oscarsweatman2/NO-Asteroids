@@ -8,13 +8,16 @@ public class Asteroid : MonoBehaviour
 	public int numAsteroidDivisions = 2;		// Number of times an asteroid divides before it just disappears
 
 	public GameObject asteroidExplosion;
+	private GameObject scoreHUDref;
+	private HUD scoreHUD;
 
 	private int numTimesSplit = 0;
 
 	// Use this for initialization
 	void Start () 
 	{
-
+		scoreHUDref = GameObject.Find("HUD outline SCORE");
+		scoreHUD = scoreHUDref.GetComponent<HUD>();
 	}
 
 	void OnTriggerEnter(Collider c)
@@ -40,6 +43,7 @@ public class Asteroid : MonoBehaviour
 			GameObject explosion = Instantiate(asteroidExplosion, new Vector3(transform.position.x, transform.position.y, -1.0f), Quaternion.Euler(0, 0, Random.Range(0, 360))) as GameObject;
 			explosion.transform.localScale = new Vector3(transform.localScale.x * 1.5f, transform.localScale.y * 1.5f, explosion.transform.localScale.z);
 			Destroy (this.gameObject);
+
 		}
 	}
 
