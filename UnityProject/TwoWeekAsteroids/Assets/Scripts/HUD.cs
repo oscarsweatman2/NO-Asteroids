@@ -16,6 +16,9 @@ public class HUD : MonoBehaviour {
 
 	public List<Texture> matLives;
 	public int currentMatLives;
+	public int currentScore;
+	private Color scoreColor;
+	public Font HUDfont;
 
 	private Texture currentTexture;
 
@@ -49,11 +52,17 @@ public class HUD : MonoBehaviour {
 		currentMatLives = 3;
 
 		// ----- SCORE behavior -----
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+	}
+
+	public void AdjustScore(int scoreChange)
+	{
+		currentScore += scoreChange;
 	}
 
 	public void AdjustNumLives(int livesChange)
@@ -73,7 +82,9 @@ public class HUD : MonoBehaviour {
 	{
 		if (HUDtype == HUDcontent.Score)
 		{
-			GUI.Label (new Rect(screenPoint.x - 20, Camera.main.pixelHeight - screenPoint.y, 200, 20), "score");
+			//GUI.color = scoreColor;
+			GUI.skin.font = HUDfont;
+			GUI.Label (new Rect(screenPoint.x - 80, Camera.main.pixelHeight - screenPoint.y -10, 200, 20), "" + currentScore);
 		}
 	}
 }

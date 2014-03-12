@@ -42,6 +42,7 @@ public class Asteroid : MonoBehaviour
 			}
 			GameObject explosion = Instantiate(asteroidExplosion, new Vector3(transform.position.x, transform.position.y, -1.0f), Quaternion.Euler(0, 0, Random.Range(0, 360))) as GameObject;
 			explosion.transform.localScale = new Vector3(transform.localScale.x * 1.5f, transform.localScale.y * 1.5f, explosion.transform.localScale.z);
+			GameObject.Find("HUD outline SCORE").SendMessage("AdjustScore", 1);
 			Destroy (this.gameObject);
 
 		}
@@ -51,12 +52,6 @@ public class Asteroid : MonoBehaviour
 	void Update () 
 	{
 		transform.Translate(Velocity * Time.deltaTime);
-		
-//		if (transform.position.x < World.Left ||
-//		    transform.position.x > World.Right ||
-//		    transform.position.y < World.Bottom ||
-//		    transform.position.y > World.Top)
-//			Destroy(this.gameObject);
 
 		// Asteroids wrap around edge of screen
 		Vector3 p = transform.position;
